@@ -1,0 +1,16 @@
+# Archivos de sistema
+.DS_Store
+Thumbs.db
+
+# Credenciales y entorno
+.env
+
+# Directorios de trabajo de PHPStorm
+.idea/
+
+# Archivos/composiciones de Composer
+/vendor/
+
+# Archivos temporales
+*.log
+*.tmp
