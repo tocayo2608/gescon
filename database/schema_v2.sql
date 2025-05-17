@@ -91,6 +91,27 @@ CREATE TABLE AutorArt (
                                   REFERENCES Usuario(id_usuario)
                                   ON DELETE CASCADE
 ) ENGINE = InnoDB;
+/* 9. Tabla Reseña ------------------------------------------------- */
+CREATE TABLE Reseña (
+                        id_reseña        INT AUTO_INCREMENT PRIMARY KEY,
+                        id_articulo      INT  NOT NULL,
+                        id_revisor       INT  NOT NULL,
+                        fecha_asignacion DATE NOT NULL,
+                        fecha_envio      DATE,
+                        decision         VARCHAR(30),
+                        comentario       TEXT,
+                        puntaje          TINYINT,
+
+                        CONSTRAINT fk_reseña_articulo
+                            FOREIGN KEY (id_articulo)
+                                REFERENCES Articulo(id_articulo)
+                                ON DELETE CASCADE,
+
+                        CONSTRAINT fk_reseña_revisor
+                            FOREIGN KEY (id_revisor)
+                                REFERENCES Revisor(id_usuario)
+                                ON DELETE CASCADE
+) ENGINE = InnoDB;
 
 /* 7. Índices recomendados */
 CREATE INDEX idx_usuario_email ON Usuario(email);
