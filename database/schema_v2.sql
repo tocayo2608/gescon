@@ -112,6 +112,33 @@ CREATE TABLE Reseña (
                                 REFERENCES Revisor(id_usuario)
                                 ON DELETE CASCADE
 ) ENGINE = InnoDB;
+/* 10. Tabla Estado (catálogo) ------------------------------------ */
+CREATE TABLE Estado (
+                        id_estado      INT AUTO_INCREMENT PRIMARY KEY,
+                        nombre         VARCHAR(40)  NOT NULL UNIQUE,
+                        descripcion    VARCHAR(255),
+                        orden_visual   SMALLINT     NOT NULL
+) ENGINE = InnoDB;
+
+/* 11. Tabla HistEstado (historial de estados) -------------------- */
+CREATE TABLE HistEstado (
+                            id_articulo INT      NOT NULL,
+                            fecha       DATETIME NOT NULL,
+                            id_estado   INT      NOT NULL,
+                            observacion VARCHAR(255),
+
+                            PRIMARY KEY (id_articulo, fecha),
+
+                            CONSTRAINT fk_hist_estado_articulo
+                                FOREIGN KEY (id_articulo)
+                                    REFERENCES Articulo(id_articulo)
+                                    ON DELETE CASCADE,
+
+                            CONSTRAINT fk_hist_estado_estado
+                                FOREIGN KEY (id_estado)
+                                    REFERENCES Estado(id_estado)
+                                    ON DELETE RESTRICT
+) ENGINE = InnoDB;
 
 /* 7. Índices recomendados */
 CREATE INDEX idx_usuario_email ON Usuario(email);
