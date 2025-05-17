@@ -139,6 +139,15 @@ CREATE TABLE HistEstado (
                                     REFERENCES Estado(id_estado)
                                     ON DELETE RESTRICT
 ) ENGINE = InnoDB;
+/* 12. Tabla Comité ----------------------------------------------- */
+CREATE TABLE Comité (
+                        id_comite      INT AUTO_INCREMENT PRIMARY KEY,
+                        nombre         VARCHAR(100) NOT NULL,
+                        año            SMALLINT     NOT NULL,
+                        fecha_creacion DATE         NOT NULL DEFAULT CURRENT_DATE,
+                        activo         BOOLEAN      NOT NULL DEFAULT TRUE,
+                        UNIQUE (nombre, año)
+) ENGINE = InnoDB;
 
 /* 7. Índices recomendados */
 CREATE INDEX idx_usuario_email ON Usuario(email);
