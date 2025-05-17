@@ -148,6 +148,26 @@ CREATE TABLE Comité (
                         activo         BOOLEAN      NOT NULL DEFAULT TRUE,
                         UNIQUE (nombre, año)
 ) ENGINE = InnoDB;
+/* 13. Tabla Miembro ------------------------------------------------ */
+CREATE TABLE Miembro (
+                         id_usuario  INT      NOT NULL,
+                         id_comite   INT      NOT NULL,
+                         rol         VARCHAR(40)  NOT NULL,
+                         fecha_inicio DATE     NOT NULL DEFAULT CURRENT_DATE,
+                         fecha_fin    DATE,
+
+                         PRIMARY KEY (id_usuario, id_comite),
+
+                         CONSTRAINT fk_miembro_usuario
+                             FOREIGN KEY (id_usuario)
+                                 REFERENCES Usuario(id_usuario)
+                                 ON DELETE CASCADE,
+
+                         CONSTRAINT fk_miembro_comite
+                             FOREIGN KEY (id_comite)
+                                 REFERENCES Comité(id_comite)
+                                 ON DELETE CASCADE
+) ENGINE = InnoDB;
 
 /* 7. Índices recomendados */
 CREATE INDEX idx_usuario_email ON Usuario(email);
