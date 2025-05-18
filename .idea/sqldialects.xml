@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="SqlDialectMappings">
+    <file url="file://$PROJECT_DIR$/BD/fn/fn_promedio_puntaje_articulo.sql" dialect="MySQL" />
+    <file url="file://$PROJECT_DIR$/BD/quick_test_parteB.sql" dialect="MySQL" />
+    <file url="file://$PROJECT_DIR$/BD/schema_v1.sql" dialect="MySQL" />
+    <file url="file://$PROJECT_DIR$/BD/schema_v2.sql" dialect="MySQL" />
+    <file url="file://$PROJECT_DIR$/BD/seed_estados.sql" dialect="MySQL" />
+    <file url="file://$PROJECT_DIR$/BD/seed_roles.sql" dialect="MySQL" />
+    <file url="file://$PROJECT_DIR$/BD/sp/sp_asignar_revisores.sql" dialect="MySQL" />
+    <file url="file://$PROJECT_DIR$/BD/trg/trg_articulo_estado_hist.sql" dialect="MySQL" />
+    <file url="file://$PROJECT_DIR$/BD/vw/vw_articulo_resumen.sql" dialect="MySQL" />
+  </component>
+</project>
