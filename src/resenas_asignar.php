@@ -2,7 +2,7 @@
 require_once __DIR__ . '/middleware/auth_required.php';
 require_once __DIR__ . '/config/db.php';
 
-/* Artículos en estado 'Enviado' o 'En revisión' */
+
 $articulos = $pdo->query("
   SELECT a.id_articulo, a.titulo, e.nombre AS estado
   FROM   Articulo a
@@ -11,7 +11,7 @@ $articulos = $pdo->query("
   ORDER BY a.fecha_envio DESC
 ")->fetchAll(PDO::FETCH_ASSOC);
 
-/* Todos los revisores */
+
 $revisores = $pdo->query("
   SELECT u.id_usuario, u.nombre, u.email
   FROM   Revisor r

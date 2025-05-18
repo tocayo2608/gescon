@@ -11,13 +11,13 @@ if ($nombre === '' || $email === '' || $password === '' || $institucion === '') 
     die('Todos los campos son obligatorios.');
 }
 
-// Encriptar
+
 $hash = password_hash($password, PASSWORD_DEFAULT);
 
 try {
     $pdo->beginTransaction();
 
-    // Insertar en Usuario
+
     $stmt = $pdo->prepare("
       INSERT INTO Usuario (nombre, email, password_hash)
       VALUES (?, ?, ?)
@@ -25,14 +25,12 @@ try {
     $stmt->execute([$nombre, $email, $hash]);
     $idUsuario = $pdo->lastInsertId();
 
-    // Insertar en Revisor
     $stmt = $pdo->prepare("
       INSERT INTO Revisor (id_usuario, institucion, fecha_designacion)
       VALUES (?, ?, CURDATE())
     ");
     $stmt->execute([$idUsuario, $institucion]);
 
-    // Asignar rol
     $idRol = $pdo->query("SELECT id_rol FROM Rol WHERE nombre = 'revisor'")->fetchColumn();
     $pdo->prepare("INSERT INTO UsuarioRol (id_usuario, id_rol) VALUES (?, ?)")
         ->execute([$idUsuario, $idRol]);

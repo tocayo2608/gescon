@@ -1,11 +1,5 @@
 <?php
-/* --------------------------------------------------
-   GESCON – Layout base con Bootstrap 5
-   Uso:
-       $titulo   = 'Título de página';
-       $contenido = __DIR__ . '/mi_pagina_contenido.php';
-       include __DIR__ . '/layout.php';
--------------------------------------------------- */
+
 require_once __DIR__ . '/middleware/auth_required.php';
 ?>
 <!DOCTYPE html>

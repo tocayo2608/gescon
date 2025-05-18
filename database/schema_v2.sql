@@ -1,16 +1,11 @@
--- ------------------------------------------------------------------
--- GESCON – Fase A: Diseño de autenticación y roles
--- Archivo : schema_v1.sql
--- ------------------------------------------------------------------
 
-/* 1. (Re)crear la base de datos */
 DROP  DATABASE IF EXISTS gescon;
 CREATE DATABASE gescon
   CHARACTER SET utf8mb4
   COLLATE utf8mb4_unicode_ci;
 USE gescon;
 
-/* 2. Tabla base de usuarios */
+
 CREATE TABLE Usuario (
                          id_usuario      INT AUTO_INCREMENT PRIMARY KEY,
                          nombre          VARCHAR(100)  NOT NULL,
@@ -20,7 +15,7 @@ CREATE TABLE Usuario (
                          activo          BOOLEAN       NOT NULL DEFAULT TRUE
 ) ENGINE = InnoDB;
 
-/* 3. Catálogo de roles */
+
 CREATE TABLE Rol (
                      id_rol INT AUTO_INCREMENT PRIMARY KEY,
                      nombre VARCHAR(20) NOT NULL UNIQUE
@@ -39,7 +34,7 @@ CREATE TABLE UsuarioRol (
                                 ON DELETE CASCADE
 ) ENGINE = InnoDB;
 
-/* 5. Rol específico: Autor */
+
 CREATE TABLE Autor (
                        id_usuario INT PRIMARY KEY,
                        afiliacion VARCHAR(255),
@@ -49,7 +44,6 @@ CREATE TABLE Autor (
                            ON DELETE CASCADE
 ) ENGINE = InnoDB;
 
-/* 6. Rol específico: Revisor */
 CREATE TABLE Revisor (
                          id_usuario        INT PRIMARY KEY,
                          institucion       VARCHAR(255),
@@ -58,23 +52,23 @@ CREATE TABLE Revisor (
                              REFERENCES Usuario(id_usuario)
                              ON DELETE CASCADE
 ) ENGINE = InnoDB;
-/* 7. Tabla Articulo -------------------------------------------- */
+
 CREATE TABLE Articulo (
                           id_articulo       INT AUTO_INCREMENT PRIMARY KEY,
                           titulo            VARCHAR(300)  NOT NULL,
                           fecha_envio       DATE          NOT NULL,
                           resumen           TEXT          NOT NULL,
-                          topicos           VARCHAR(255),         -- por normalizar más adelante
-                          autor_contacto    INT           NOT NULL,            -- FK a Usuario
+                          topicos           VARCHAR(255),
+                          autor_contacto    INT           NOT NULL,
                           fecha_limite_envio DATE         NOT NULL,
                           CONSTRAINT fk_articulo_autor_contacto
                               FOREIGN KEY (autor_contacto)
                                   REFERENCES Usuario(id_usuario)
                                   ON DELETE RESTRICT,
-                          UNIQUE (titulo, autor_contacto)          -- evita títulos duplicados por mismo autor
+                          UNIQUE (titulo, autor_contacto)
 ) ENGINE = InnoDB;
 
-/* 8. Tabla AutorArt (relación N-a-N artículo–autor) ------------- */
+
 CREATE TABLE AutorArt (
                           id_articulo INT NOT NULL,
                           id_usuario  INT NOT NULL,
@@ -91,7 +85,7 @@ CREATE TABLE AutorArt (
                                   REFERENCES Usuario(id_usuario)
                                   ON DELETE CASCADE
 ) ENGINE = InnoDB;
-/* 9. Tabla Reseña ------------------------------------------------- */
+
 CREATE TABLE Reseña (
                         id_reseña        INT AUTO_INCREMENT PRIMARY KEY,
                         id_articulo      INT  NOT NULL,
@@ -112,7 +106,7 @@ CREATE TABLE Reseña (
                                 REFERENCES Revisor(id_usuario)
                                 ON DELETE CASCADE
 ) ENGINE = InnoDB;
-/* 10. Tabla Estado (catálogo) ------------------------------------ */
+
 CREATE TABLE Estado (
                         id_estado      INT AUTO_INCREMENT PRIMARY KEY,
                         nombre         VARCHAR(40)  NOT NULL UNIQUE,
@@ -120,7 +114,7 @@ CREATE TABLE Estado (
                         orden_visual   SMALLINT     NOT NULL
 ) ENGINE = InnoDB;
 
-/* 11. Tabla HistEstado (historial de estados) -------------------- */
+
 CREATE TABLE HistEstado (
                             id_articulo INT      NOT NULL,
                             fecha       DATETIME NOT NULL,
@@ -139,7 +133,7 @@ CREATE TABLE HistEstado (
                                     REFERENCES Estado(id_estado)
                                     ON DELETE RESTRICT
 ) ENGINE = InnoDB;
-/* 12. Tabla Comité ----------------------------------------------- */
+
 CREATE TABLE Comité (
                         id_comite      INT AUTO_INCREMENT PRIMARY KEY,
                         nombre         VARCHAR(100) NOT NULL,
@@ -148,7 +142,7 @@ CREATE TABLE Comité (
                         activo         BOOLEAN      NOT NULL DEFAULT TRUE,
                         UNIQUE (nombre, año)
 ) ENGINE = InnoDB;
-/* 13. Tabla Miembro ------------------------------------------------ */
+
 CREATE TABLE Miembro (
                          id_usuario  INT      NOT NULL,
                          id_comite   INT      NOT NULL,
@@ -169,5 +163,5 @@ CREATE TABLE Miembro (
                                  ON DELETE CASCADE
 ) ENGINE = InnoDB;
 
-/* 7. Índices recomendados */
+
 CREATE INDEX idx_usuario_email ON Usuario(email);

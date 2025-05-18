@@ -9,7 +9,6 @@ if (!$idArt || !$idRev) {
     die('Datos incompletos.');
 }
 
-/* Evitar duplicados: no asignar dos veces el mismo revisor al mismo artículo */
 $existe = $pdo->prepare("
   SELECT COUNT(*) FROM Reseña
   WHERE id_articulo = ? AND id_revisor = ?
@@ -19,7 +18,7 @@ if ($existe->fetchColumn() > 0) {
     die('Este revisor ya fue asignado a este artículo.');
 }
 
-/* Insertar la asignación */
+
 $stmt = $pdo->prepare("
   INSERT INTO Reseña (id_articulo, id_revisor, fecha_asignacion)
   VALUES (?, ?, CURDATE())

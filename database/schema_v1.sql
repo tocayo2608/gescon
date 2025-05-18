@@ -1,16 +1,11 @@
--- ------------------------------------------------------------------
--- GESCON – Fase A: Diseño de autenticación y roles
--- Archivo : schema_v1.sql
--- ------------------------------------------------------------------
 
-/* 1. (Re)crear la base de datos */
 DROP  DATABASE IF EXISTS gescon;
 CREATE DATABASE gescon
   CHARACTER SET utf8mb4
   COLLATE utf8mb4_unicode_ci;
 USE gescon;
 
-/* 2. Tabla base de usuarios */
+
 CREATE TABLE Usuario (
                          id_usuario      INT AUTO_INCREMENT PRIMARY KEY,
                          nombre          VARCHAR(100)  NOT NULL,
@@ -20,13 +15,13 @@ CREATE TABLE Usuario (
                          activo          BOOLEAN       NOT NULL DEFAULT TRUE
 ) ENGINE = InnoDB;
 
-/* 3. Catálogo de roles */
+
 CREATE TABLE Rol (
                      id_rol INT AUTO_INCREMENT PRIMARY KEY,
                      nombre VARCHAR(20) NOT NULL UNIQUE
 ) ENGINE = InnoDB;
 
-/* 4. Asociación N-a-N usuario–rol */
+
 CREATE TABLE UsuarioRol (
                             id_usuario INT NOT NULL,
                             id_rol     INT NOT NULL,
@@ -39,7 +34,7 @@ CREATE TABLE UsuarioRol (
                                 ON DELETE CASCADE
 ) ENGINE = InnoDB;
 
-/* 5. Rol específico: Autor */
+
 CREATE TABLE Autor (
                        id_usuario INT PRIMARY KEY,
                        afiliacion VARCHAR(255),
@@ -49,7 +44,7 @@ CREATE TABLE Autor (
                            ON DELETE CASCADE
 ) ENGINE = InnoDB;
 
-/* 6. Rol específico: Revisor */
+
 CREATE TABLE Revisor (
                          id_usuario        INT PRIMARY KEY,
                          institucion       VARCHAR(255),
@@ -59,5 +54,5 @@ CREATE TABLE Revisor (
                              ON DELETE CASCADE
 ) ENGINE = InnoDB;
 
-/* 7. Índices recomendados */
+
 CREATE INDEX idx_usuario_email ON Usuario(email);

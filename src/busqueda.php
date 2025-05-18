@@ -2,7 +2,7 @@
 require_once __DIR__ . '/middleware/auth_required.php';
 require_once __DIR__ . '/config/db.php';
 
-/* ---- Filtros ---- */
+
 $filtros = [
     'titulo'  => trim($_GET['titulo']  ?? ''),
     'topico'  => trim($_GET['topico']  ?? ''),
@@ -13,10 +13,10 @@ $filtros = [
     'hasta'   => trim($_GET['hasta']   ?? ''),
 ];
 
-/* Estados para el select */
+
 $estados = $pdo->query("SELECT id_estado, nombre FROM Estado ORDER BY orden_visual")->fetchAll();
 
-/* Ejecutar solo si hay al menos un filtro */
+
 $hayBusqueda = array_filter($filtros, fn($v) => $v !== '');
 $resultados  = null;
 
@@ -57,7 +57,7 @@ if ($hayBusqueda) {
         $params[':hasta'] = $filtros['hasta'];
     }
     if ($filtros['revisor']) {
-        /* Existe reseña con ese revisor */
+
         $sql .= "
           AND EXISTS (
             SELECT 1
@@ -77,7 +77,7 @@ if ($hayBusqueda) {
     $resultados = $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
 
-/* Renderizar */
+
 $titulo    = 'Búsqueda avanzada – GESCON';
 $contenido = __DIR__ . '/busqueda_view.php';
 include __DIR__ . '/layout.php';
