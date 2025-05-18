@@ -20,6 +20,8 @@ $routes = [
     'resenas_mias'         => __DIR__ . '/resenas_mias.php',
     'resena_entregar'      => __DIR__ . '/resena_entregar.php',
     'resena_entregar_exec' => __DIR__ . '/resena_entregar_exec.php',
+    'busqueda' => __DIR__ . '/busqueda.php',
+
 
 
 
