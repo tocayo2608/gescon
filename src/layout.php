@@ -22,7 +22,9 @@ require_once __DIR__ . '/middleware/auth_required.php';
         <a href="/gescon/src/router.php?page=articulos">Mis artículos</a> |
         <a href="/gescon/src/router.php?page=articulo_crear">Nuevo artículo</a> |
         <a href="/gescon/src/router.php?page=revisores">Revisores</a> |
-        <a href="/gescon/src/logout.php">Cerrar sesión</a>
+        <a href="/gescon/src/logout.php">Cerrar sesión</a>|
+        <a href="/gescon/src/router.php?page=resenas_asignar">Asignar reseña</a>
+
 
     </nav>
 

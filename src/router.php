@@ -15,6 +15,9 @@ $routes = [
     'articulo_borrar_exec' => __DIR__ . '/articulo_borrar_exec.php',
     'revisores' => __DIR__ . '/revisores.php',
     'revisor_crear' => __DIR__ . '/revisor_crear.php',
+    'resenas_asignar'      => __DIR__ . '/resenas_asignar.php',
+    'resenas_asignar_exec' => __DIR__ . '/resenas_asignar_exec.php',
+
 
 
 
