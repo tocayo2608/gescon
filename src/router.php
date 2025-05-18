@@ -21,6 +21,10 @@ $routes = [
     'resena_entregar'      => __DIR__ . '/resena_entregar.php',
     'resena_entregar_exec' => __DIR__ . '/resena_entregar_exec.php',
     'busqueda' => __DIR__ . '/busqueda.php',
+    'revisor_editar'      => __DIR__ . '/revisor_editar.php',
+    'revisor_actualizar'  => __DIR__ . '/revisor_actualizar.php',
+    'revisor_eliminar'    => __DIR__ . '/revisor_eliminar.php',
+
 
 
 

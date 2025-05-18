@@ -8,7 +8,7 @@ $sql = "
          r.institucion, r.fecha_designacion
   FROM   Revisor r
   JOIN   Usuario u ON u.id_usuario = r.id_usuario
-  ORDER BY r.fecha_designacion DESC
+  ORDER BY u.nombre ASC
 ";
 
 $revisores = $pdo->query($sql)->fetchAll(PDO::FETCH_ASSOC);

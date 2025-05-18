@@ -1,18 +1,23 @@
 <h2>Búsqueda avanzada de artículos</h2>
 
-<form method="get" action="/gescon/src/router.php">
+<form method="get" action="/gescon/src/router.php" class="row gy-2 gx-3 align-items-center">
     <input type="hidden" name="page" value="busqueda">
 
-    <label>Título:
-        <input type="text" name="titulo" value="<?= htmlspecialchars($filtros['titulo'] ?? '') ?>">
-    </label>
+    <div class="col-md">
+        <label class="form-label">Título</label>
+        <input type="text" name="titulo" class="form-control"
+               value="<?= htmlspecialchars($filtros['titulo'] ?? '') ?>">
+    </div>
 
-    <label>Tópico:
-        <input type="text" name="topico" value="<?= htmlspecialchars($filtros['topico'] ?? '') ?>">
-    </label>
+    <div class="col-md">
+        <label class="form-label">Tópico</label>
+        <input type="text" name="topico" class="form-control"
+               value="<?= htmlspecialchars($filtros['topico'] ?? '') ?>">
+    </div>
 
-    <label>Estado:
-        <select name="estado">
+    <div class="col-md">
+        <label class="form-label">Estado</label>
+        <select name="estado" class="form-select">
             <option value="">— Todos —</option>
             <?php foreach ($estados as $e): ?>
                 <option value="<?= $e['id_estado'] ?>"
@@ -21,13 +26,35 @@
                 </option>
             <?php endforeach; ?>
         </select>
-    </label>
+    </div>
 
-    <label>Autor:
-        <input type="text" name="autor" value="<?= htmlspecialchars($filtros['autor'] ?? '') ?>">
-    </label>
+    <div class="col-md">
+        <label class="form-label">Autor</label>
+        <input type="text" name="autor" class="form-control"
+               value="<?= htmlspecialchars($filtros['autor'] ?? '') ?>">
+    </div>
 
-    <button type="submit">Buscar</button>
+    <div class="col-md">
+        <label class="form-label">Revisor</label>
+        <input type="text" name="revisor" class="form-control"
+               value="<?= htmlspecialchars($filtros['revisor'] ?? '') ?>">
+    </div>
+
+    <div class="col-md">
+        <label class="form-label">Envío desde</label>
+        <input type="date" name="desde" class="form-control"
+               value="<?= htmlspecialchars($filtros['desde'] ?? '') ?>">
+    </div>
+
+    <div class="col-md">
+        <label class="form-label">Envío hasta</label>
+        <input type="date" name="hasta" class="form-control"
+               value="<?= htmlspecialchars($filtros['hasta'] ?? '') ?>">
+    </div>
+
+    <div class="col-md-auto align-self-end">
+        <button class="btn btn-primary">Buscar</button>
+    </div>
 </form>
 
 <hr>
@@ -37,8 +64,8 @@
 <?php elseif (empty($resultados)): ?>
     <p>No se encontraron coincidencias.</p>
 <?php else: ?>
-    <table border="1" cellpadding="6">
-        <thead>
+    <table class="table table-striped table-sm">
+        <thead class="table-dark">
         <tr>
             <th>ID</th>
             <th>Título</th>
