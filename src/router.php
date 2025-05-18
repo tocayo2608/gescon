@@ -14,8 +14,10 @@ $routes = [
     'articulo_borrar'      => __DIR__ . '/articulo_borrar.php',
     'articulo_borrar_exec' => __DIR__ . '/articulo_borrar_exec.php',
     'revisores' => __DIR__ . '/revisores.php',
+    'revisor_crear' => __DIR__ . '/revisor_crear.php',
 
-    
+
+
 ];
 
 /* Si existe y el archivo está presente, lo incluimos */
