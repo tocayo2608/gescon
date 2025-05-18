@@ -17,6 +17,10 @@ $routes = [
     'revisor_crear' => __DIR__ . '/revisor_crear.php',
     'resenas_asignar'      => __DIR__ . '/resenas_asignar.php',
     'resenas_asignar_exec' => __DIR__ . '/resenas_asignar_exec.php',
+    'resenas_mias'         => __DIR__ . '/resenas_mias.php',
+    'resena_entregar'      => __DIR__ . '/resena_entregar.php',
+    'resena_entregar_exec' => __DIR__ . '/resena_entregar_exec.php',
+
 
 
 
